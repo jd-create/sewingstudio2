@@ -1,5 +1,7 @@
 package com.example.demo_spring_jpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,13 @@ public class Address {
 
     @Column(name = "city")
     private String city;
+
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval  = true )
+    @JoinColumn(name="account_id")
+    private Account account;
 
 
     public long getAddressid() {

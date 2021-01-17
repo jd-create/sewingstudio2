@@ -1,5 +1,6 @@
 package com.example.demo_spring_jpa.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -18,6 +19,10 @@ public class Account {
     @Column(name = "last_name")
     private String lastName;
 
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "account")
+
+    private Address address;
 
     public String getFirstName() {
         return firstName;
